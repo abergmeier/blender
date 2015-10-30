@@ -663,7 +663,9 @@ prepare_opt() {
   if [ ! $SUDO ]; then
     WARNING "--no-sudo enabled, might be impossible to create install dir..."
   fi
-  if [ ! -d  $INST ]; then
+  if [[ $INST/ = $HOME/* ]]; then
+    mkdir -p $INST
+  elif [ ! -d  $INST ]; then
     $SUDO mkdir -p $INST
   fi
 
